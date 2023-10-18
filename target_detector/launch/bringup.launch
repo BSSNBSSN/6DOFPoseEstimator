@@ -1,0 +1,7 @@
+<launch>
+
+	<param name="ImageSubTopic" value="/sub_topic" />
+	<param name="NodesPubTopic" value="/pub_topic" />
+	<node pkg="target_detector" type="target_detector_node" name="target_detector_node" output="screen"/>
+
+</launch>
