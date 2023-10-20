@@ -1,0 +1,7 @@
+<launch>
+
+	<param name="EllipseNodeTopic" value="/ellipse_nodes" />
+	<param name="RawPose" value="/raw_pose" />
+	<node pkg="pnp_solver" type="pnp_solver_node" name="pnp_solver_node" output="screen"/>
+
+</launch>

@@ -1,0 +1,7 @@
+<launch>
+
+	<param name="RawPose" value="/raw_pose" />
+	<param name="EKFPose" value="/ekf_pose" />
+	<node pkg="pose_ekf" type="pose_ekf_node" name="pose_ekf_node" output="screen"/>
+
+</launch>
