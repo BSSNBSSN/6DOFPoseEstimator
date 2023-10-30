@@ -65,6 +65,7 @@ void ExtendedKalmanFilter::Updatedt()
     ros::Time currentTime = ros::Time::now();
     duration = currentTime - timeRecorder_;
     dt_ = duration.toSec();
+    std::cout<<1/dt_<<std::endl;
     timeRecorder_ = currentTime;
 }
 

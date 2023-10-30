@@ -21,8 +21,8 @@ void PoseEKF::Run()
             // Get quaternion
             tf2::Quaternion quaternion;
             tf2::convert(transformStamped.transform.rotation, quaternion);
-            ROS_INFO("Raw Quaternion (x, y, z, w): %f, %f, %f, %f",
-                     quaternion.x(), quaternion.y(), quaternion.z(), quaternion.w());
+            // ROS_INFO("Raw Quaternion (x, y, z, w): %f, %f, %f, %f",
+            //          quaternion.x(), quaternion.y(), quaternion.z(), quaternion.w());
 
             // EKF
             Eigen::VectorXd z(7);
@@ -30,11 +30,9 @@ void PoseEKF::Run()
             EKF.StatePredict();
             EKF.StateUpdate(z);
             EKF.GetState(quaternion);
+            quaternion.normalize();
 
-            // Publish filtered TF
-            // std::cout<<"header "<<transformStamped.header.frame_id<<std::endl;
-            // std::cout<<"child_frame_id "<<transformStamped.child_frame_id<<std::endl;
-            
+            transformStamped.header.stamp = ros::Time::now();
             transformStamped.child_frame_id = this->targetEKFFrame;
             transformStamped.transform.rotation.w = quaternion.w();
             transformStamped.transform.rotation.x = quaternion.x();
@@ -43,7 +41,6 @@ void PoseEKF::Run()
 
             // Broadcast transform
             tfBroadcaster.sendTransform(transformStamped);
-
         }
         catch (tf2::TransformException &ex)
         {

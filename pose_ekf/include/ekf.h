@@ -8,7 +8,6 @@
 class ExtendedKalmanFilter
 {
 public:
-
     // Set the initial state
     void StateInitialize(const Eigen::VectorXd &x0);
     // Update EKF parameters

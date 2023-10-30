@@ -37,9 +37,6 @@ void PNPSolver::Callback(const std_msgs::Int32MultiArray::ConstPtr &ellipseNodes
     transform.header.stamp = ros::Time::now();
     transform.header.frame_id = this->baseFrame;
     transform.child_frame_id = this->targetRawFrame;
-    
-    std::cout<<"header "<<transform.header.frame_id<<std::endl;
-    std::cout<<"child_frame_id "<<transform.child_frame_id<<std::endl;
 
     tf2::Matrix3x3 rotation;
     tf2::Quaternion quaternion;
