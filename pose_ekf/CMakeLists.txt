@@ -10,6 +10,8 @@ find_package(catkin REQUIRED COMPONENTS
   nav_msgs
   tf
   tf2
+  tf2_ros
+  tf2_geometry_msgs
   cv_bridge
   image_transport
 )
@@ -18,6 +20,6 @@ catkin_package()
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(${PROJECT_NAME}_node src/main.cpp src/pose_ekf.cpp)
+add_executable(${PROJECT_NAME}_node src/main.cpp src/pose_ekf.cpp src/ekf.cpp)
 
 target_link_libraries(${PROJECT_NAME}_node ${catkin_LIBRARIES})

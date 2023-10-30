@@ -18,29 +18,23 @@ class PNPSolver
 {
 
 public:
+    PNPSolver()
+    {
+        ros::param::get("EllipseNodeTopic", ellipseNodeTopic);
+        ros::param::get("BaseFrame", baseFrame);
+        ros::param::get("TargetRawFrame", targetRawFrame);
+        ellipseNodeSuber = nodeHandle.subscribe(ellipseNodeTopic, 1, &PNPSolver::Callback, this);
+    }
 
-  PNPSolver(){
-    ros::param::get("EllipseNodeTopic", ellipseNodeTopic);
-    ros::param::get("OdomTopic", odomTopic);
-
-    ellipseNodeSuber = nodeHandle.subscribe(ellipseNodeTopic, 1, &PNPSolver::Callback, this);
-    odomPuber = nodeHandle.advertise<sensor_msgs::Image>(odomTopic, 1);
-  }
-
-  void Callback(const std_msgs::Int32MultiArray::ConstPtr& ellipseNodes);
+    void Callback(const std_msgs::Int32MultiArray::ConstPtr &ellipseNodes);
 
 private:
-
-  ros::NodeHandle nodeHandle;
-
-  ros::Subscriber ellipseNodeSuber;
-  ros::Publisher odomPuber;
-
-  std::string ellipseNodeTopic;
-  std::string odomTopic;
-
-  tf2_ros::TransformBroadcaster tf_broadcaster;
-
+    ros::NodeHandle nodeHandle;
+    ros::Subscriber ellipseNodeSuber;
+    std::string ellipseNodeTopic;
+    std::string baseFrame;
+    std::string targetRawFrame;
+    tf2_ros::TransformBroadcaster tfBroadcaster;
 };
 
 #endif

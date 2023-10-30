@@ -1,7 +1,8 @@
 <launch>
 
-	<param name="ImageSubTopic" value="/sub_topic" />
-	<param name="NodesPubTopic" value="/pub_topic" />
+	<param name="ImageSubTopic" value="/camera/color/image_raw" />
+	<param name="ImagePubTopic" value="/pub_topic" />
+	<param name="NodesPubTopic" value="/ellipse_nodes" />
 	<node pkg="target_detector" type="target_detector_node" name="target_detector_node" output="screen"/>
 
 </launch>

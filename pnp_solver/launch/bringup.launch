@@ -1,7 +1,8 @@
 <launch>
 
 	<param name="EllipseNodeTopic" value="/ellipse_nodes" />
-	<param name="RawPose" value="/raw_pose" />
+	<param name="BaseFrame" value="camera_color_frame" />
+	<param name="TargetRawFrame" value="target_raw_frame" />
 	<node pkg="pnp_solver" type="pnp_solver_node" name="pnp_solver_node" output="screen"/>
 
 </launch>

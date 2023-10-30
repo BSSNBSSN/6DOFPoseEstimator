@@ -2,8 +2,9 @@
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "pose_ekf_node");
-  PoseEKF poseEKF;
-  ros::spin();
-  return 0;
+    ros::init(argc, argv, "pose_ekf_node");
+    PoseEKF poseEKF;
+
+    poseEKF.Run();
+    return 0;
 }

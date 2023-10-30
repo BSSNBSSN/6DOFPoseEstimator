@@ -1,7 +1,8 @@
 <launch>
 
-	<param name="RawPose" value="/raw_pose" />
-	<param name="EKFPose" value="/ekf_pose" />
+	<param name="BaseFrame" value="camera_color_frame" />
+	<param name="TargetRawFrame" value="target_raw_frame" />
+	<param name="TargetEKFFrame" value="target_ekf_frame" />
 	<node pkg="pose_ekf" type="pose_ekf_node" name="pose_ekf_node" output="screen"/>
 
 </launch>
