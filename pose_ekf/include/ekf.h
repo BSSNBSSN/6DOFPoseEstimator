@@ -17,9 +17,9 @@ public:
     void UpdateQ();
     void UpdateR(const Eigen::VectorXd &x);
     // EKF pridict
-    Eigen::MatrixXd StatePredict();
+    void StatePredict();
     // EKF update
-    Eigen::MatrixXd StateUpdate(const Eigen::VectorXd &z);
+    void StateUpdate(const Eigen::VectorXd &z);
 
     void GetState(tf2::Quaternion &quaternion);
     

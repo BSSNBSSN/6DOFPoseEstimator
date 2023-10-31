@@ -1,6 +1,6 @@
 #include "ekf.h"
 
-Eigen::MatrixXd ExtendedKalmanFilter::StatePredict()
+void ExtendedKalmanFilter::StatePredict()
 {
     Updatedt();
     UpdateF(x_post_);
@@ -14,7 +14,7 @@ Eigen::MatrixXd ExtendedKalmanFilter::StatePredict()
     P_post_ = P_pri_;
 }
 
-Eigen::MatrixXd ExtendedKalmanFilter::StateUpdate(const Eigen::VectorXd &z)
+void ExtendedKalmanFilter::StateUpdate(const Eigen::VectorXd &z)
 {
     UpdateH();
     UpdateR(z);
@@ -22,8 +22,6 @@ Eigen::MatrixXd ExtendedKalmanFilter::StateUpdate(const Eigen::VectorXd &z)
     K_ = P_pri_ * H_.transpose() * (H_ * P_pri_ * H_.transpose() + R_).inverse();
     x_post_ = x_pri_ + K_ * (z - H_ * x_pri_);
     P_post_ = (I_ - K_ * H_) * P_pri_;
-    return x_post_;
-
 }
 
 void ExtendedKalmanFilter::GetState(tf2::Quaternion & quaternion)
@@ -65,7 +63,6 @@ void ExtendedKalmanFilter::Updatedt()
     ros::Time currentTime = ros::Time::now();
     duration = currentTime - timeRecorder_;
     dt_ = duration.toSec();
-    std::cout<<1/dt_<<std::endl;
     timeRecorder_ = currentTime;
 }
 
